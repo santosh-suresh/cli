@@ -1,20 +1,21 @@
 'use strict';
 
-var _Object$defineProperty = require('babel-runtime/core-js/object/define-property')['default'];
-
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
 
 var _interopRequireWildcard = require('babel-runtime/helpers/interop-require-wildcard')['default'];
 
-_Object$defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, '__esModule', {
   value: true
 });
-
 exports.bundleTemplate = bundleTemplate;
 
 var _jspm = require('jspm');
 
 var _jspm2 = _interopRequireDefault(_jspm);
+
+var _jspmLibConfig = require('jspm/lib/config');
+
+var _jspmLibConfig2 = _interopRequireDefault(_jspmLibConfig);
 
 var _whacko = require('whacko');
 
@@ -118,5 +119,7 @@ function injectLink(outfile, baseURL, injectOptions) {
 }
 
 function getCanonicalName(builder, file, pluginName) {
-  return builder.getCanonicalName(_systemjsBuilderLibUtils2['default'].toFileURL(file) + '!' + pluginName);
+  var fileName = builder.getCanonicalName(_systemjsBuilderLibUtils2['default'].toFileURL(_path2['default'].resolve(_jspmLibConfig2['default'].pjson.baseURL, file)));
+  log.err("File is " + fileName + " was: " + file);
+  return builder.getCanonicalName(fileName + '!' + pluginName);
 }

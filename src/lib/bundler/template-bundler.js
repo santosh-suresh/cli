@@ -86,5 +86,6 @@ function injectLink(outfile, baseURL, injectOptions) {
 
 function getCanonicalName(builder, file, pluginName) {
   var fileName = builder.getCanonicalName(utils.toFileURL(path.resolve(config.pjson.baseURL, file)));
+  log.err("File is " + fileName + " was: " + file);
   return builder.getCanonicalName(fileName + '!' + pluginName);
 }
