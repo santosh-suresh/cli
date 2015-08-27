@@ -1,4 +1,5 @@
 import jspm from 'jspm';
+import config from 'jspm/lib/config';
 import whacko from 'whacko';
 import fs from 'fs';
 import path from 'path';
@@ -84,5 +85,6 @@ function injectLink(outfile, baseURL, injectOptions) {
 }
 
 function getCanonicalName(builder, file, pluginName) {
-  return builder.getCanonicalName(utils.toFileURL(file) + '!' + pluginName);
+  var fileName = builder.getCanonicalName(utils.toFileURL(path.resolve(config.pjson.baseURL, file)));
+  return builder.getCanonicalName(fileName + '!' + pluginName);
 }
